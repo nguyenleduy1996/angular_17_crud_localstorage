@@ -1,1 +1,108 @@
-<h1>Start Project</h1>
+<div class="container">
+    <div class="row pt-3">
+        <div class="col-6">
+            <h4> Student Portal</h4>
+        </div>
+        <div class="col-6 text-end">
+            <button (click)="openModel()" type="button"  class="btn btn-outline-success">Add new</button>
+            
+        </div>
+    </div>
+    <div class="row">
+        @for (item of studentList; track $index) {
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">
+                                {{item.name}}
+                            </div>
+                            <div class="col-6">
+                            
+                                {{item.mobileNo}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>   {{item.city}},    {{item.state}},    {{item.name}}</p>
+                        <p>   {{item.address}}</p>
+                    </div>
+                    <div class="card-footer  text-center">
+                        <div class="row">
+                            <div class="col-9">
+                                <p>   {{item.email}}</p>
+                            </div>
+                            <div class="col-3">
+                                <button (click)="onEdit(item)" type="button"  class="btn btn-outline-success">Edit</button>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        }
+      
+    </div>
+</div>
+
+
+
+<div class="modal" id="myModal" #myModal>
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Create New Student</h4>
+          <button (click)="closeModel()" type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-8">
+                  <label for="">Name</label>
+                  <input type="text" [(ngModel)]="studentObj.name" class="form-control" placeholder="Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <label for="">Mobile No</label>
+                  <input type="text" [(ngModel)]="studentObj.mobileNo" class="form-control" placeholder="Mobile">
+                </div>
+                <div class="col-6">
+                  <label for="">Email</label>
+                  <input type="text" [(ngModel)]="studentObj.email" class="form-control" placeholder="Email">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label for="">City</label>
+                  <input type="text" [(ngModel)]="studentObj.city" class="form-control" placeholder="City">
+                </div>
+                <div class="col-4">
+                  <label for="">State</label>
+                  <input type="text" [(ngModel)]="studentObj.state" class="form-control" placeholder="State">
+                </div>
+                <div class="col-4">
+                  <label for="">Pin Code</label>
+                  <input type="text" [(ngModel)]="studentObj.pincode" class="form-control" placeholder="Pin Code">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <label for="">Address</label>
+                  <textarea rows="3" [(ngModel)]="studentObj.address" class="form-control"></textarea>
+                </div>
+              </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button (click)="closeModel()"  type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="saveStudent()">Save Student</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
