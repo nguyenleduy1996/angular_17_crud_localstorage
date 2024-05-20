@@ -9,39 +9,47 @@
         </div>
     </div>
     <div class="row">
-        @for (item of studentList; track $index) {
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-6">
-                                {{item.name}}
-                            </div>
-                            <div class="col-6">
-                            
-                                {{item.mobileNo}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>   {{item.city}},    {{item.state}},    {{item.name}}</p>
-                        <p>   {{item.address}}</p>
-                    </div>
-                    <div class="card-footer  text-center">
-                        <div class="row">
-                            <div class="col-9">
-                                <p>   {{item.email}}</p>
-                            </div>
-                            <div class="col-3">
-                                <button (click)="onEdit(item)" type="button"  class="btn btn-outline-success">Edit</button>
+        @if (studentList.length !== 0) {
+            @for (item of studentList; track $index) {
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-6">
+                                    {{item.name}}
+                                </div>
+                                <div class="col-6">
+                                
+                                    {{item.mobileNo}}
+                                </div>
                             </div>
                         </div>
-                       
+                        <div class="card-body">
+                            <p>   {{item.city}},    {{item.state}},    {{item.name}}</p>
+                            <p>   {{item.address}}</p>
+                        </div>
+                        <div class="card-footer  text-center">
+                            <div class="row">
+                                <div class="col-6">
+                                    <small>{{item.email}}</small> 
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-sm btn-primary" (click)="onEdit(item)">Edit</button>
+                                    <button class="btn btn-sm btn-danger" (click)="onDelete(item)">Delet</button>
+                                </div>
+                            </div>
+                           
+                        </div>
                     </div>
                 </div>
-            </div>
+            } 
+        }@else {
+            <div class="row">
+                <div class="col-12 p-4 text-center">
+                  <p>No Record Found. Create New Record</p>
+                </div>
+              </div>
         }
-      
     </div>
 </div>
 
@@ -99,9 +107,15 @@
   
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button (click)="closeModel()"  type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="saveStudent()">Save Student</button>
-        </div>
+            <button type="button" class="btn btn-danger" (click)="closeModel()">Close</button>
+            @if (studentObj.id ==0) {
+              <button type="button" class="btn btn-primary" (click)="saveStudent()">Save Student</button>
+            } @else {
+              <button type="button" class="btn btn-success" (click)="updateStud()">Update Student</button>
+            }
+           
+           
+          </div>
   
       </div>
     </div>
